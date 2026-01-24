@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      args:
+        ENV: development
+    volumes:
+      - ./src:/app/src
+      - ./run.py:/app/run.py
+    environment:
+      - ENV=development
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
