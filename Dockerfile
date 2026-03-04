@@ -21,6 +21,10 @@ COPY run.py .
 # -------- Stage 2: Runtime --------
 FROM python:3.11-slim
 
+# Install curl for health check
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create non-root user
 RUN useradd -m appuser
 
